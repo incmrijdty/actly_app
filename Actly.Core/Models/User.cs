@@ -18,7 +18,7 @@ public class User
 
     [Required]
     public string PasswordHash { get; set; }
-    
+
     public List<Participation> Participations { get; set; }
-    public List<UserBadge> UserBadges { get; set; } = new();
+    //public List<UserBadge> UserBadges { get; set; } = new();
 }
