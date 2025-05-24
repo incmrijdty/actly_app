@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Actly.Core.Models;
+using Actly.Core.DTOs;
 using Actly.API;
 using Microsoft.EntityFrameworkCore;
 
@@ -24,8 +25,25 @@ public class ParticipationController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<Participation>> JoinEvent(Participation participation)
+    public async Task<ActionResult<Participation>> JoinEvent([FromBody] ParticipationDto dto)
     {
+        var user = await _context.Users.FindAsync(dto.UserId);
+        var ev = await _context.Events.FindAsync(dto.EventId);
+
+        if (user == null || ev == null)
+            return BadRequest("Invalid user or event ID.");
+
+        var participation = new Participation
+        {
+            UserId = dto.UserId,
+            EventId = dto.EventId,
+            Attended = dto.Attended,
+            Feedback = dto.Feedback,
+            JoinedAt = DateTime.UtcNow,
+            User = user,
+            Event = ev
+        };
+
         _context.Participations.Add(participation);
         await _context.SaveChangesAsync();
 

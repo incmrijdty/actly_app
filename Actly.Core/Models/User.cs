@@ -8,17 +8,17 @@ public class User
     public int Id { get; set; }
 
     [Required]
-    public string Username { get; set; }
+    public required string Username { get; set; }
 
     [Required, EmailAddress]
-    public string Email { get; set; }
+    public required string Email { get; set; }
 
     [Required]
-    public string Role { get; set; } // Volunteer or Organizer
+    public required string Role { get; set; } // Volunteer or Organizer
 
     [Required]
-    public string PasswordHash { get; set; }
+    public required string PasswordHash { get; set; }
 
-    public List<Participation> Participations { get; set; }
+    //public required List<Participation> Participations { get; set; }
     //public List<UserBadge> UserBadges { get; set; } = new();
 }

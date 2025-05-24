@@ -10,12 +10,12 @@ public class Participation
     [Required]
     public int UserId { get; set; }
 
-    public User User { get; set; }
+    public required User? User { get; set; }
 
     [Required]
     public int EventId { get; set; }
 
-    public Event Event { get; set; }
+    public required Event? Event { get; set; }
     public bool Attended { get; set; }
     public string? Feedback { get; set; }
 

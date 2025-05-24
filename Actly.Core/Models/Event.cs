@@ -8,22 +8,22 @@ public class Event
     public int Id { get; set; }
 
     [Required]
-    public string Title { get; set; }
+    public required string Title { get; set; }
 
     [Required]
-    public string Description { get; set; }
+    public required string Description { get; set; }
 
     [Required]
     public DateTime Date { get; set; }
 
     [Required]
-    public string Location { get; set; }
+    public required string Location { get; set; }
 
     [Required]
     public int MaxParticipants { get; set; }
 
     [Required]
-    public string Category { get; set; }
+    public required string Category { get; set; }
 
-    public List<Participation> Participations { get; set; }
+    //public required List<Participation> Participations { get; set; }
 }
