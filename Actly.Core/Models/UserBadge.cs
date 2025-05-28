@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 
 namespace Actly.Core.Models;
-//???
+
 public class UserBadge
 {
     [Key]

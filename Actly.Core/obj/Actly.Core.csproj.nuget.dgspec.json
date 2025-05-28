@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\Алеся\\OneDrive\\Рабочий стол\\actly_app\\Actly.Core\\Actly.Core.csproj": {}
+    "C:\\Users\\Алеся\\OneDrive\\Рабочий стол\\actly_app\\Actly.Core\\Actly.Core.csproj": {}
   },
   "projects": {
-    "c:\\Users\\Алеся\\OneDrive\\Рабочий стол\\actly_app\\Actly.Core\\Actly.Core.csproj": {
+    "C:\\Users\\Алеся\\OneDrive\\Рабочий стол\\actly_app\\Actly.Core\\Actly.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\Алеся\\OneDrive\\Рабочий стол\\actly_app\\Actly.Core\\Actly.Core.csproj",
+        "projectUniqueName": "C:\\Users\\Алеся\\OneDrive\\Рабочий стол\\actly_app\\Actly.Core\\Actly.Core.csproj",
         "projectName": "Actly.Core",
-        "projectPath": "c:\\Users\\Алеся\\OneDrive\\Рабочий стол\\actly_app\\Actly.Core\\Actly.Core.csproj",
+        "projectPath": "C:\\Users\\Алеся\\OneDrive\\Рабочий стол\\actly_app\\Actly.Core\\Actly.Core.csproj",
         "packagesPath": "C:\\Users\\Алеся\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\Алеся\\OneDrive\\Рабочий стол\\actly_app\\Actly.Core\\obj\\",
+        "outputPath": "C:\\Users\\Алеся\\OneDrive\\Рабочий стол\\actly_app\\Actly.Core\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

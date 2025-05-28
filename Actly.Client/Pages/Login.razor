@@ -1,0 +1,49 @@
+﻿@page "/login"
+@inject HttpClient Http
+@inject NavigationManager Navigation
+@using Microsoft.AspNetCore.Components.Authorization
+@inject AuthenticationStateProvider AuthProvider
+
+
+<PageTitle>Login</PageTitle>
+
+<h1>Login</h1>
+
+
+@if (!string.IsNullOrEmpty(errorMessage))
+{
+    <p style="color:red">@errorMessage</p>
+}
+
+<EditForm Model="loginModel" OnValidSubmit="HandleLogin">
+    <InputText @bind-Value="loginModel.Email" placeholder="Email" />
+    <InputText @bind-Value="loginModel.Password" type="password" placeholder="Password" />
+    <button type="submit">Login</button>
+</EditForm>
+
+@code {
+    private LoginModel loginModel = new();
+    private string errorMessage;
+
+    private async Task HandleLogin()
+    {
+        var response = await Http.PostAsJsonAsync("https://localhost:5001/api/auth/login", loginModel);
+        if (response.IsSuccessStatusCode)
+        {
+            var token = await response.Content.ReadAsStringAsync();
+
+            await ((CustomAuthStateProvider)AuthProvider).SetTokenAsync(token);
+            Navigation.NavigateTo("/");
+        }
+        else
+        {
+            errorMessage = "Login failed";
+        }
+    }
+
+    public class LoginModel
+    {
+        public string Email { get; set; }
+        public string Password { get; set; }
+    }
+}

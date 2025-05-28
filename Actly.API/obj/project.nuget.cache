@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "HOyDYqWHvqQa0f5FUzAzHC8qXlP8qaNIVdqcthx3Lhzmk3S2Rs1kdhex52fKTa3Q/+VfGONqSpXfIMxDK+nCww==",
+  "dgSpecHash": "2q+vjrIE9e1Mrday8x8JAaXgB9D6z6/42H1o6miwIvh1FkpmdMB+25lbIafEBn0eRfzYnzrRXedtwuqo3JsSAg==",
   "success": true,
-  "projectFilePath": "c:\\Users\\Алеся\\OneDrive\\Рабочий стол\\actly_app\\Actly.API\\Actly.API.csproj",
+  "projectFilePath": "C:\\Users\\Алеся\\OneDrive\\Рабочий стол\\actly_app\\Actly.API\\Actly.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Алеся\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\Алеся\\.nuget\\packages\\humanizer\\2.14.1\\humanizer.2.14.1.nupkg.sha512",
