@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Actly.Core.Models;
 using Actly.API;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 [ApiController]
 [Route("api/[controller]")]
@@ -36,16 +37,18 @@ public class EventsController : ControllerBase
         return ev;
     }
 
+    [Authorize(Roles = "Organizer")]
     [HttpPost]
     public async Task<ActionResult<Event>> CreateEvent(Event ev)
     {
+
         _context.Events.Add(ev);
         await _context.SaveChangesAsync();
 
         return CreatedAtAction(nameof(GetEvent), new { id = ev.Id }, ev);
     }
 
-    //???
+    [Authorize(Roles = "Organizer")]
     [HttpPut("{id}")]
     public async Task<IActionResult> UpdateEvent(int id, Event updated)
     {
@@ -68,6 +71,7 @@ public class EventsController : ControllerBase
         return NoContent();
     }
 
+    [Authorize(Roles = "Organizer")]
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteEvent(int id)
     {

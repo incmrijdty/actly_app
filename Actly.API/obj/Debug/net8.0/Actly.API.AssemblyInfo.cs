@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Actly.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c7ec2f529bee00de464aa7d9fe69e3f2f6040c63")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9110f140d00b3c3232d2c5dec65f0ddd795ad9bc")]
 [assembly: System.Reflection.AssemblyProductAttribute("Actly.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Actly.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
