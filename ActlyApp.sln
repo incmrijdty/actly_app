@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Actly.API", "Actly.API\Actl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Actly.Core", "Actly.Core\Actly.Core.csproj", "{DBDD0C35-A68F-4BA3-872B-CBBBF7070EE0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Actly.Client", "Actly.Client\Actly.Client.csproj", "{EB738545-B6D6-494E-9B0E-B51BA276FB3F}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

@@ -20,7 +20,6 @@ public class EventsController : ControllerBase
     public async Task<ActionResult<IEnumerable<Event>>> GetEvents()
     {
         return await _context.Events
-            //.Include(e => e.Organizer)
             .ToListAsync();
     }
 
@@ -28,7 +27,6 @@ public class EventsController : ControllerBase
     public async Task<ActionResult<Event>> GetEvent(int id)
     {
         var ev = await _context.Events
-            //.Include(e => e.Organizer)
             .FirstOrDefaultAsync(e => e.Id == id);
 
         if (ev == null)

@@ -73,26 +73,43 @@ builder.Services.AddAuthentication("Bearer")
 
 builder.Services.AddAuthorization();
 
-builder.Logging.ClearProviders();
-builder.Logging.AddConsole();
+//builder.Logging.ClearProviders();
+//builder.Logging.AddConsole();
 
 var app = builder.Build();
 
-app.UseCors("AllowBlazorClient");
+//app.UseCors("AllowBlazorClient");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Actly API V1");
+        c.RoutePrefix = "swagger";  // <-- Swagger UI at /swagger
+    });
+}
+else
+{
+    // Ensure Swagger is off in Production
+    app.UseExceptionHandler("/Error");
+    app.UseHsts();
 }
 
-app.UseHttpsRedirection();
+app.UseDefaultFiles(); // Enables serving index.html as default
+app.UseStaticFiles();
+
+app.UseRouting();
+
+//app.UseHttpsRedirection();
 
 app.UseAuthentication();
 
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.MapFallbackToFile("wwwroot/dist/actly-client/browser/index.html");
 
 app.Run();

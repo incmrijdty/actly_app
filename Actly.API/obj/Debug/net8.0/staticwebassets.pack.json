@@ -1,0 +1,109 @@
+{
+  "Files": [
+    {
+      "Id": "c:\\Users\\Алеся\\OneDrive\\Рабочий стол\\actly_app\\Actly.API\\wwwroot\\dist\\actly-client\\3rdpartylicenses.txt",
+      "PackagePath": "staticwebassets\\dist\\actly-client\\3rdpartylicenses.txt"
+    },
+    {
+      "Id": "c:\\Users\\Алеся\\OneDrive\\Рабочий стол\\actly_app\\Actly.API\\wwwroot\\dist\\actly-client\\browser\\favicon.ico",
+      "PackagePath": "staticwebassets\\dist\\actly-client\\browser\\favicon.ico"
+    },
+    {
+      "Id": "c:\\Users\\Алеся\\OneDrive\\Рабочий стол\\actly_app\\Actly.API\\wwwroot\\dist\\actly-client\\browser\\index.csr.html",
+      "PackagePath": "staticwebassets\\dist\\actly-client\\browser\\index.csr.html"
+    },
+    {
+      "Id": "c:\\Users\\Алеся\\OneDrive\\Рабочий стол\\actly_app\\Actly.API\\wwwroot\\dist\\actly-client\\browser\\index.html",
+      "PackagePath": "staticwebassets\\dist\\actly-client\\browser\\index.html"
+    },
+    {
+      "Id": "c:\\Users\\Алеся\\OneDrive\\Рабочий стол\\actly_app\\Actly.API\\wwwroot\\dist\\actly-client\\browser\\main-LO5XZC6R.js",
+      "PackagePath": "staticwebassets\\dist\\actly-client\\browser\\main-LO5XZC6R.js"
+    },
+    {
+      "Id": "c:\\Users\\Алеся\\OneDrive\\Рабочий стол\\actly_app\\Actly.API\\wwwroot\\dist\\actly-client\\browser\\polyfills-B6TNHZQ6.js",
+      "PackagePath": "staticwebassets\\dist\\actly-client\\browser\\polyfills-B6TNHZQ6.js"
+    },
+    {
+      "Id": "c:\\Users\\Алеся\\OneDrive\\Рабочий стол\\actly_app\\Actly.API\\wwwroot\\dist\\actly-client\\browser\\styles-5INURTSO.css",
+      "PackagePath": "staticwebassets\\dist\\actly-client\\browser\\styles-5INURTSO.css"
+    },
+    {
+      "Id": "c:\\Users\\Алеся\\OneDrive\\Рабочий стол\\actly_app\\Actly.API\\wwwroot\\dist\\actly-client\\prerendered-routes.json",
+      "PackagePath": "staticwebassets\\dist\\actly-client\\prerendered-routes.json"
+    },
+    {
+      "Id": "c:\\Users\\Алеся\\OneDrive\\Рабочий стол\\actly_app\\Actly.API\\wwwroot\\dist\\actly-client\\server\\angular-app-engine-manifest.mjs",
+      "PackagePath": "staticwebassets\\dist\\actly-client\\server\\angular-app-engine-manifest.mjs"
+    },
+    {
+      "Id": "c:\\Users\\Алеся\\OneDrive\\Рабочий стол\\actly_app\\Actly.API\\wwwroot\\dist\\actly-client\\server\\angular-app-manifest.mjs",
+      "PackagePath": "staticwebassets\\dist\\actly-client\\server\\angular-app-manifest.mjs"
+    },
+    {
+      "Id": "c:\\Users\\Алеся\\OneDrive\\Рабочий стол\\actly_app\\Actly.API\\wwwroot\\dist\\actly-client\\server\\assets-chunks\\index_csr_html.mjs",
+      "PackagePath": "staticwebassets\\dist\\actly-client\\server\\assets-chunks\\index_csr_html.mjs"
+    },
+    {
+      "Id": "c:\\Users\\Алеся\\OneDrive\\Рабочий стол\\actly_app\\Actly.API\\wwwroot\\dist\\actly-client\\server\\assets-chunks\\index_html.mjs",
+      "PackagePath": "staticwebassets\\dist\\actly-client\\server\\assets-chunks\\index_html.mjs"
+    },
+    {
+      "Id": "c:\\Users\\Алеся\\OneDrive\\Рабочий стол\\actly_app\\Actly.API\\wwwroot\\dist\\actly-client\\server\\assets-chunks\\index_server_html.mjs",
+      "PackagePath": "staticwebassets\\dist\\actly-client\\server\\assets-chunks\\index_server_html.mjs"
+    },
+    {
+      "Id": "c:\\Users\\Алеся\\OneDrive\\Рабочий стол\\actly_app\\Actly.API\\wwwroot\\dist\\actly-client\\server\\assets-chunks\\styles-5INURTSO_css.mjs",
+      "PackagePath": "staticwebassets\\dist\\actly-client\\server\\assets-chunks\\styles-5INURTSO_css.mjs"
+    },
+    {
+      "Id": "c:\\Users\\Алеся\\OneDrive\\Рабочий стол\\actly_app\\Actly.API\\wwwroot\\dist\\actly-client\\server\\chunk-HKQTHSU5.mjs",
+      "PackagePath": "staticwebassets\\dist\\actly-client\\server\\chunk-HKQTHSU5.mjs"
+    },
+    {
+      "Id": "c:\\Users\\Алеся\\OneDrive\\Рабочий стол\\actly_app\\Actly.API\\wwwroot\\dist\\actly-client\\server\\chunk-L2MVFUKD.mjs",
+      "PackagePath": "staticwebassets\\dist\\actly-client\\server\\chunk-L2MVFUKD.mjs"
+    },
+    {
+      "Id": "c:\\Users\\Алеся\\OneDrive\\Рабочий стол\\actly_app\\Actly.API\\wwwroot\\dist\\actly-client\\server\\chunk-X2SEQXRR.mjs",
+      "PackagePath": "staticwebassets\\dist\\actly-client\\server\\chunk-X2SEQXRR.mjs"
+    },
+    {
+      "Id": "c:\\Users\\Алеся\\OneDrive\\Рабочий стол\\actly_app\\Actly.API\\wwwroot\\dist\\actly-client\\server\\chunk-ZBYV3YBF.mjs",
+      "PackagePath": "staticwebassets\\dist\\actly-client\\server\\chunk-ZBYV3YBF.mjs"
+    },
+    {
+      "Id": "c:\\Users\\Алеся\\OneDrive\\Рабочий стол\\actly_app\\Actly.API\\wwwroot\\dist\\actly-client\\server\\index.server.html",
+      "PackagePath": "staticwebassets\\dist\\actly-client\\server\\index.server.html"
+    },
+    {
+      "Id": "c:\\Users\\Алеся\\OneDrive\\Рабочий стол\\actly_app\\Actly.API\\wwwroot\\dist\\actly-client\\server\\main.server.mjs",
+      "PackagePath": "staticwebassets\\dist\\actly-client\\server\\main.server.mjs"
+    },
+    {
+      "Id": "c:\\Users\\Алеся\\OneDrive\\Рабочий стол\\actly_app\\Actly.API\\wwwroot\\dist\\actly-client\\server\\polyfills.server.mjs",
+      "PackagePath": "staticwebassets\\dist\\actly-client\\server\\polyfills.server.mjs"
+    },
+    {
+      "Id": "c:\\Users\\Алеся\\OneDrive\\Рабочий стол\\actly_app\\Actly.API\\wwwroot\\dist\\actly-client\\server\\server.mjs",
+      "PackagePath": "staticwebassets\\dist\\actly-client\\server\\server.mjs"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.Actly.API.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.Actly.API.props",
+      "PackagePath": "build\\Actly.API.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.Actly.API.props",
+      "PackagePath": "buildMultiTargeting\\Actly.API.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.Actly.API.props",
+      "PackagePath": "buildTransitive\\Actly.API.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

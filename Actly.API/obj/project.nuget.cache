@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "2q+vjrIE9e1Mrday8x8JAaXgB9D6z6/42H1o6miwIvh1FkpmdMB+25lbIafEBn0eRfzYnzrRXedtwuqo3JsSAg==",
+  "dgSpecHash": "9ov6aH/Y6SQCdp4+ObHQRMLsfUPYpx2KH/eUmLZGy0oVTNt6wTXCbOksTnvdM4hLZ3JLDkz15eKJ6TynCseIsA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Алеся\\OneDrive\\Рабочий стол\\actly_app\\Actly.API\\Actly.API.csproj",
+  "projectFilePath": "c:\\Users\\Алеся\\OneDrive\\Рабочий стол\\actly_app\\Actly.API\\Actly.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Алеся\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\Алеся\\.nuget\\packages\\humanizer\\2.14.1\\humanizer.2.14.1.nupkg.sha512",
@@ -61,6 +61,7 @@
     "C:\\Users\\Алеся\\.nuget\\packages\\microsoft.aspnetcore.identity.entityframeworkcore\\8.0.0\\microsoft.aspnetcore.identity.entityframeworkcore.8.0.0.nupkg.sha512",
     "C:\\Users\\Алеся\\.nuget\\packages\\microsoft.aspnetcore.openapi\\8.0.0\\microsoft.aspnetcore.openapi.8.0.0.nupkg.sha512",
     "C:\\Users\\Алеся\\.nuget\\packages\\microsoft.aspnetcore.razor.language\\6.0.24\\microsoft.aspnetcore.razor.language.6.0.24.nupkg.sha512",
+    "C:\\Users\\Алеся\\.nuget\\packages\\microsoft.aspnetcore.spaservices.extensions\\8.0.0\\microsoft.aspnetcore.spaservices.extensions.8.0.0.nupkg.sha512",
     "C:\\Users\\Алеся\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\7.0.0\\microsoft.bcl.asyncinterfaces.7.0.0.nupkg.sha512",
     "C:\\Users\\Алеся\\.nuget\\packages\\microsoft.build\\17.10.4\\microsoft.build.17.10.4.nupkg.sha512",
     "C:\\Users\\Алеся\\.nuget\\packages\\microsoft.build.framework\\17.10.4\\microsoft.build.framework.17.10.4.nupkg.sha512",
@@ -92,6 +93,9 @@
     "C:\\Users\\Алеся\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\9.0.5\\microsoft.extensions.dependencyinjection.9.0.5.nupkg.sha512",
     "C:\\Users\\Алеся\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\9.0.5\\microsoft.extensions.dependencyinjection.abstractions.9.0.5.nupkg.sha512",
     "C:\\Users\\Алеся\\.nuget\\packages\\microsoft.extensions.dependencymodel\\9.0.5\\microsoft.extensions.dependencymodel.9.0.5.nupkg.sha512",
+    "C:\\Users\\Алеся\\.nuget\\packages\\microsoft.extensions.fileproviders.abstractions\\8.0.0\\microsoft.extensions.fileproviders.abstractions.8.0.0.nupkg.sha512",
+    "C:\\Users\\Алеся\\.nuget\\packages\\microsoft.extensions.fileproviders.physical\\8.0.0\\microsoft.extensions.fileproviders.physical.8.0.0.nupkg.sha512",
+    "C:\\Users\\Алеся\\.nuget\\packages\\microsoft.extensions.filesystemglobbing\\8.0.0\\microsoft.extensions.filesystemglobbing.8.0.0.nupkg.sha512",
     "C:\\Users\\Алеся\\.nuget\\packages\\microsoft.extensions.identity.core\\8.0.0\\microsoft.extensions.identity.core.8.0.0.nupkg.sha512",
     "C:\\Users\\Алеся\\.nuget\\packages\\microsoft.extensions.identity.stores\\8.0.0\\microsoft.extensions.identity.stores.8.0.0.nupkg.sha512",
     "C:\\Users\\Алеся\\.nuget\\packages\\microsoft.extensions.logging\\9.0.5\\microsoft.extensions.logging.9.0.5.nupkg.sha512",
