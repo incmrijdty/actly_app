@@ -1,0 +1,24 @@
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Actly.Core.Models;
+
+public class User
+{
+    [Key]
+    public int Id { get; set; }
+
+    [Required]
+    public required string Username { get; set; }
+
+    [Required, EmailAddress]
+    public required string Email { get; set; }
+
+    [Required]
+    public required string Role { get; set; } // Volunteer or Organizer
+
+    [Required]
+    public required string PasswordHash { get; set; }
+
+    //public required List<Participation> Participations { get; set; }
+    //public List<UserBadge> UserBadges { get; set; } = new();
+}
