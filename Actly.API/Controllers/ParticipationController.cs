@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using Actly.Core.Models;
-using Actly.Core.DTOs;
+using Actly.API.Models;
+using Actly.API.DTOs;
 using Actly.API;
 using Microsoft.EntityFrameworkCore;
 

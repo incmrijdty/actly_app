@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using Actly.Core.Models;
+using Actly.API.Models;
 using Actly.API;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;

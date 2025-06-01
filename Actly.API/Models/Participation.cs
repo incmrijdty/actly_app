@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Actly.Core.Models;
+namespace Actly.API.Models;
 
 public class Participation
 {

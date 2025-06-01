@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using Actly.Core.Models; 
+using Actly.API.Models; 
 
 namespace Actly.API
 {

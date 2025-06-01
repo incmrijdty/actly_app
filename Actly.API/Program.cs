@@ -110,6 +110,6 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.MapFallbackToFile("wwwroot/dist/actly-client/browser/index.html");
+app.MapFallbackToFile("../Actly.Client/src/index.html");
 
 app.Run();

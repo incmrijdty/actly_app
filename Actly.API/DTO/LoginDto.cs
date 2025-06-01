@@ -1,4 +1,4 @@
-namespace Actly.Core.DTOs;
+namespace Actly.API.DTOs;
 
 public class LoginDto
 {
