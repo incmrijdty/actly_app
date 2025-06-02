@@ -3,6 +3,7 @@ using Actly.API.Models;
 using Actly.API.DTOs;
 using Actly.API;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 [ApiController]
 [Route("api/[controller]")]
@@ -24,6 +25,7 @@ public class ParticipationController : ControllerBase
             .ToListAsync();
     }
 
+    [Authorize(Roles = "Volunteer")]
     [HttpPost]
     public async Task<ActionResult<Participation>> JoinEvent([FromBody] ParticipationDto dto)
     {
@@ -50,6 +52,7 @@ public class ParticipationController : ControllerBase
         return CreatedAtAction(nameof(GetParticipations), new { id = participation.Id }, participation);
     }
 
+    [Authorize(Roles = "Volunteer")]
     [HttpDelete("{id}")]
     public async Task<IActionResult> LeaveEvent(int id)
     {

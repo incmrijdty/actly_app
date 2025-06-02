@@ -73,12 +73,8 @@ builder.Services.AddAuthentication("Bearer")
 
 builder.Services.AddAuthorization();
 
-//builder.Logging.ClearProviders();
-//builder.Logging.AddConsole();
-
 var app = builder.Build();
 
-//app.UseCors("AllowBlazorClient");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

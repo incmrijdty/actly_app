@@ -31,7 +31,7 @@ public class AuthController : ControllerBase
     public async Task<IActionResult> Register(RegisterDto dto)
     {
         if (await _context.Users.AnyAsync(u => u.Email == dto.Email))
-            return BadRequest("Email already on use.");
+            return BadRequest("Email already in use.");
 
 
         var user = new User
@@ -39,7 +39,8 @@ public class AuthController : ControllerBase
             Username = dto.Username,
             Email = dto.Email,
             Role = dto.Role,
-            PasswordHash = BCrypt.Net.BCrypt.HashPassword(dto.Password)
+            PasswordHash = BCrypt.Net.BCrypt.HashPassword(dto.Password),
+            Participations = []
         };
 
         _context.Users.Add(user);
