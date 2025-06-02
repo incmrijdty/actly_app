@@ -5,7 +5,8 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Actly.API", "Actly.API\Actly.API.csproj", "{FEB65407-628D-45BB-ADE4-F29EA1803E80}"
 EndProject
-
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Actly.CLient", "Actly.Client\src\index.html", "{DBDD0C35-A68F-4BA3-872B-CBBBF7070EE0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
