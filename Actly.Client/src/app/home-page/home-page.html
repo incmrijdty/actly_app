@@ -1,0 +1,29 @@
+<div class="home-container">
+  <header class="header">
+    <h1>Welcome to Actly!</h1>
+    <div class="auth-buttons">
+      <button routerLink="/login">Log In</button>
+      <button routerLink="/register">Register</button>
+    </div>
+    <router-outlet></router-outlet>
+  </header>
+
+  <div *ngIf="loading">Loading events...</div>
+
+  <div class="event-list" *ngIf="!loading && events.length">
+    <div class="event-card" *ngFor="let event of events">
+      <img src="assets/event-placeholder.jpg" alt="Event image">
+      <div class="event-details">
+        <h2>{{ event.title }}</h2>
+        <p><strong>Date:</strong> {{ event.date | date:'fullDate' }} {{ event.date | date:'shortTime' }}</p>
+        <p><strong>Location:</strong> {{ event.location }}</p>
+        <p><strong>Max Participants:</strong> {{ event.maxParticipants }}</p>
+        <p>{{ event.description }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!loading && !events.length">
+    <p>No events available right now.</p>
+  </div>
+</div>

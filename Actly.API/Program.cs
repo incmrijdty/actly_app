@@ -1,16 +1,12 @@
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Actly.API;
 using System.Text.Json.Serialization;
 using System.Text;
-//using Microsoft.AspNetCore.Authorization;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
@@ -73,6 +69,16 @@ builder.Services.AddAuthentication("Bearer")
 
 builder.Services.AddAuthorization();
 
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(policy =>
+    {
+        policy.WithOrigins("http://localhost:4200") // ✅ your Angular app URL
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
+
 var app = builder.Build();
 
 
@@ -93,19 +99,15 @@ else
     app.UseHsts();
 }
 
-app.UseDefaultFiles(); // Enables serving index.html as default
-app.UseStaticFiles();
+app.UseHttpsRedirection();
 
 app.UseRouting();
 
-//app.UseHttpsRedirection();
+app.UseCors(); 
 
 app.UseAuthentication();
-
 app.UseAuthorization();
 
 app.MapControllers();
-
-app.MapFallbackToFile("../Actly.Client/src/index.html");
 
 app.Run();
