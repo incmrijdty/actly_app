@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register-component',
+  standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './register-component.html',
   styleUrl: './register-component.css'
@@ -17,18 +18,27 @@ export class RegisterComponent {
   role = 'Volunteer';
   password = '';
   error = '';
-  success = '';
 
   constructor(private auth: AuthService, private router: Router) {}
 
   onSubmit() {
+    console.log('Submitting register form...');
     this.auth.register({ username: this.username, email: this.email, role: this.role, password: this.password })
       .subscribe({
         next: () => {
-          this.success = 'Registered successfully!';
-          this.router.navigate(['/login']);
+          setTimeout(() => {
+            this.router.navigate(['/login']);
+          }, 2000); 
         },
-        error: err => this.error = err.error || 'Registration failed'
+        error: err => {
+          if (typeof err.error === 'string') {
+            this.error = err.error;
+          } else if (err.error?.message) {
+            this.error = err.error.message;
+          } else {
+            this.error = 'Registration failed';
+          }
+        }
       });
   }
 }

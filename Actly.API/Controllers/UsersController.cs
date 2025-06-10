@@ -1,8 +1,6 @@
-
 using Microsoft.AspNetCore.Mvc;
 using Actly.API.Models;
 using Actly.API;
-using Microsoft.EntityFrameworkCore;
 
 [ApiController]
 [Route("api/[controller]")]

@@ -20,7 +20,15 @@ export class LoginComponent {
   onSubmit() {
     this.auth.login({ email: this.email, password: this.password }).subscribe({
       next: () => this.router.navigate(['/']),
-      error: err => this.error = err.error || 'Login failed'
+      error: err => {
+          if (typeof err.error === 'string') {
+            this.error = err.error;
+          } else if (err.error?.message) {
+            this.error = err.error.message;
+          } else {
+            this.error = 'Registration failed';
+          }
+        }
     });
   }
 }

@@ -1,0 +1,12 @@
+<div class="event-card">
+  <h3>{{ event.title }}</h3>
+  <p><strong>Date:</strong> {{ event.date | date:'fullDate' }} at {{ event.date | date:'shortTime' }}</p>
+  <p><strong>Location:</strong> {{ event.location }}</p>
+  <p><strong>Category:</strong> {{ event.category }}</p>
+  <p><strong>Max Participants:</strong> {{ event.maxParticipants }}</p>
+  <p>{{ event.description }}</p>
+
+  <button *ngIf="canJoin" (click)="joinEvent()">Join Event</button>
+  <p *ngIf="joined" style="color: green;">Joined successfully!</p>
+  <p *ngIf="error" style="color: red;">{{ error }}</p>
+</div>

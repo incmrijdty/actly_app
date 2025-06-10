@@ -1,7 +1,8 @@
-namespace Actly.API.DTOs;
-
-public class LoginDto
+namespace Actly.API.DTO
 {
-    public required string Email { get; set; }
-    public required string Password { get; set; }
+    public class LoginDto
+    {
+        public required string Email { get; set; }
+        public required string Password { get; set; }
+    }
 }

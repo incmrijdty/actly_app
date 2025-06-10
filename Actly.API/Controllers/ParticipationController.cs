@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Actly.API.Models;
-using Actly.API.DTOs;
+using Actly.API.DTO;
 using Actly.API;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;

@@ -1,24 +1,25 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Actly.API.Models;
-
-public class User
+namespace Actly.API.Models
 {
-    [Key]
-    public int Id { get; set; }
+    public class User
+    {
+        [Key]
+        public int Id { get; set; }
 
-    [Required]
-    public required string Username { get; set; }
+        [Required]
+        public required string Username { get; set; }
 
-    [Required, EmailAddress]
-    public required string Email { get; set; }
+        [Required, EmailAddress]
+        public required string Email { get; set; }
 
-    [Required]
-    public required string Role { get; set; } // Volunteer or Organizer
+        [Required]
+        public required string Role { get; set; } // Volunteer or Organizer
 
-    [Required]
-    public required string PasswordHash { get; set; }
+        [Required]
+        public required string PasswordHash { get; set; }
 
-    public required List<Participation> Participations { get; set; }
-    //public List<UserBadge> UserBadges { get; set; } = new();
+        public required List<Participation> Participations { get; set; }
+        //public List<UserBadge> UserBadges { get; set; } = new();
+    }
 }

@@ -1,23 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router'; // for routerLink to work
-
-
-interface Event {
-  id: number;
-  title: string;
-  description: string;
-  date: string;
-  location: string;
-  maxParticipants: number;
-}
-
+import { RouterModule } from '@angular/router'; 
+import { Event } from '../models/event';
+import { EventCardComponent } from '../event-card-component/event-card-component';
 
 @Component({
   selector: 'app-home-page',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, EventCardComponent],
   templateUrl: './home-page.html',
   styleUrl: './home-page.css'
 })
@@ -26,7 +17,7 @@ export class HomePage implements OnInit {
   events: Event[] = [];
   loading = true;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private cd: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     this.fetchEvents();
@@ -38,10 +29,12 @@ export class HomePage implements OnInit {
         next: (data) => {
           this.events = data;
           this.loading = false;
+          this.cd.detectChanges();
         },
         error: (err) => {
           console.error('Failed to fetch events', err);
           this.loading = false;
+          this.cd.detectChanges();
         }
       });
   }

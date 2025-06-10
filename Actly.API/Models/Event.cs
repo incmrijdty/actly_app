@@ -1,29 +1,30 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Actly.API.Models;
-
-public class Event
+namespace Actly.API.Models
 {
-    [Key]
-    public int Id { get; set; }
+    public class Event
+    {
+        [Key]
+        public int Id { get; set; }
 
-    [Required]
-    public required string Title { get; set; }
+        [Required]
+        public required string Title { get; set; }
 
-    [Required]
-    public required string Description { get; set; }
+        [Required]
+        public required string Description { get; set; }
 
-    [Required]
-    public DateTime Date { get; set; }
+        [Required]
+        public DateTime Date { get; set; }
 
-    [Required]
-    public required string Location { get; set; }
+        [Required]
+        public required string Location { get; set; }
 
-    [Required]
-    public int MaxParticipants { get; set; }
+        [Required]
+        public int MaxParticipants { get; set; }
 
-    [Required]
-    public required string Category { get; set; }
+        [Required]
+        public required string Category { get; set; }
 
-    public required List<Participation> Participations { get; set; }
+        public required List<Participation> Participations { get; set; }
+    }
 }
