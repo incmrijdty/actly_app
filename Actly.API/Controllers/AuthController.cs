@@ -61,7 +61,9 @@ public class AuthController : ControllerBase
 
     private string GenerateJwtToken(User user)
     {
+#pragma warning disable CS8604 // Possible null reference argument.
         var key = Encoding.UTF8.GetBytes(_config["Jwt:Key"]);
+#pragma warning restore CS8604 // Possible null reference argument.
         var claims = new[]
         {
             new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
