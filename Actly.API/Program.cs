@@ -53,6 +53,7 @@ builder.Services.AddAuthentication("Bearer")
     .AddJwtBearer("Bearer", options => 
     {
         var config = builder.Configuration;
+#pragma warning disable CS8604 // Possible null reference argument.
         options.TokenValidationParameters = new TokenValidationParameters
         {
             ValidateIssuer = true,
@@ -64,6 +65,7 @@ builder.Services.AddAuthentication("Bearer")
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["Jwt:Key"])),
             RoleClaimType = "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
         };
+#pragma warning restore CS8604 // Possible null reference argument.
 
     });
 
