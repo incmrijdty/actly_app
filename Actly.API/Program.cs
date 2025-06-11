@@ -75,7 +75,7 @@ builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(policy =>
     {
-        policy.WithOrigins("http://localhost:4200") // ✅ your Angular app URL
+        policy.WithOrigins("http://localhost:4200") 
               .AllowAnyHeader()
               .AllowAnyMethod();
     });
@@ -84,19 +84,17 @@ builder.Services.AddCors(options =>
 var app = builder.Build();
 
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI(c =>
     {
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "Actly API V1");
-        c.RoutePrefix = "swagger";  // <-- Swagger UI at /swagger
+        c.RoutePrefix = "swagger"; 
     });
 }
 else
 {
-    // Ensure Swagger is off in Production
     app.UseExceptionHandler("/Error");
     app.UseHsts();
 }

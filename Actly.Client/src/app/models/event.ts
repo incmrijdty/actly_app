@@ -6,4 +6,5 @@ export interface Event {
   location: string;
   maxParticipants: number;
   category: string;
+  attended: boolean;
 }

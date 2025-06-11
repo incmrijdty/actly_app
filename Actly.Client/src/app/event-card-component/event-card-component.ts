@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, Input } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Event } from '../models/event';
 import { ParticipationService } from '../services/participation';
@@ -16,8 +16,9 @@ interface JwtPayload {
   templateUrl: './event-card-component.html',
   styleUrls: ['./event-card-component.css']
 })
-export class EventCardComponent {
+export class EventCardComponent implements OnInit {
   @Input() event!: Event;
+  userId!: number;
   error = '';
   joined = false;
   canJoin = false;
@@ -36,10 +37,21 @@ export class EventCardComponent {
       try {
         const payload = jwtDecode<JwtPayload>(token);
         console.log('[EventCardComponent] decoded token:', payload);
-
+        this.userId = Number(payload['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier']);
         this.canJoin = payload['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'] === 'Volunteer';
-        console.log(this.canJoin)
-        this.cdr.markForCheck();
+        console.log(this.canJoin);
+
+        if (this.canJoin) {
+          this.participationService.checkParticipation(this.userId, this.event.id).subscribe({
+            next: (hasJoined) => {
+              this.joined = hasJoined;
+              this.cdr.markForCheck();
+            },
+            error: () => this.error = 'Failed to check participation'
+          });
+        }
+
+
       } catch (err) {
         console.error('[EventCardComponent] Invalid token:', err);
       }
@@ -49,20 +61,38 @@ export class EventCardComponent {
   }
 
   joinEvent() {
-    const token = this.auth.getToken();
-    if (!token) return;
+    if (!this.userId || !this.canJoin) return;
 
-    const payload = jwtDecode<JwtPayload>(token);
     const participation = {
-      userId: Number(payload['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier']),
+      userId: this.userId,
       eventId: this.event.id,
       attended: false,
       feedback: null
     };
 
     this.participationService.joinEvent(participation).subscribe({
-      next: () => this.joined = true,
-      error: err => this.error = err.error || 'Failed to join'
+      next: () => {
+        this.joined = true;
+        this.cdr.markForCheck();
+      },
+      error: (err) => {
+        this.error = err.error || 'Failed to join';
+      }
+    });
+  }
+
+  
+  leaveEvent() {
+    if (!this.userId || !this.canJoin) return;
+
+    this.participationService.leaveEvent(this.userId, this.event.id).subscribe({
+      next: () => {
+        this.joined = false;
+        this.cdr.markForCheck();
+      },
+      error: () => {
+        this.error = 'Failed to leave event';
+      }
     });
   }
 }

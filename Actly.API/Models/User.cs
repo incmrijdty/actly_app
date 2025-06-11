@@ -14,7 +14,7 @@ namespace Actly.API.Models
         public required string Email { get; set; }
 
         [Required]
-        public required string Role { get; set; } // Volunteer or Organizer
+        public required string Role { get; set; } 
 
         [Required]
         public required string PasswordHash { get; set; }

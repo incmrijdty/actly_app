@@ -29,6 +29,12 @@ public class ParticipationController : ControllerBase
     [HttpPost]
     public async Task<ActionResult<Participation>> JoinEvent([FromBody] ParticipationDto dto)
     {
+        var alreadyJoined = await _context.Participations
+            .AnyAsync(p => p.UserId == dto.UserId && p.EventId == dto.EventId);
+
+        if (alreadyJoined)
+            return BadRequest("User already joined this event.");
+
         var user = await _context.Users.FindAsync(dto.UserId);
         var ev = await _context.Events.FindAsync(dto.EventId);
 
@@ -53,10 +59,10 @@ public class ParticipationController : ControllerBase
     }
 
     [Authorize(Roles = "Volunteer")]
-    [HttpDelete("{id}")]
-    public async Task<IActionResult> LeaveEvent(int id)
+    [HttpDelete("{userId}/{eventId}")]
+    public async Task<IActionResult> LeaveEvent(int userId, int eventId)
     {
-        var part = await _context.Participations.FindAsync(id);
+        var part = await _context.Participations.FirstOrDefaultAsync(p => p.UserId == userId && p.EventId == eventId);
         if (part == null)
             return NotFound();
 
@@ -65,4 +71,14 @@ public class ParticipationController : ControllerBase
 
         return NoContent();
     }
+    
+    [HttpGet("user/{userId}/event/{eventId}")]
+    public async Task<IActionResult> CheckParticipation(int userId, int eventId)
+    {
+        var exists = await _context.Participations
+            .AnyAsync(p => p.UserId == userId && p.EventId == eventId);
+
+        return Ok(exists);
+    }
+
 }
