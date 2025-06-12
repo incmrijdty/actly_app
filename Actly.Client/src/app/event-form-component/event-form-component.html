@@ -1,0 +1,9 @@
+<form [formGroup]="eventForm" (ngSubmit)="submit()">
+  <input formControlName="title" placeholder="Title" />
+  <textarea formControlName="description" placeholder="Description"></textarea>
+  <input formControlName="location" placeholder="Location" />
+  <input type="datetime-local" formControlName="date" />
+  <input type="number" formControlName="maxParticipants" placeholder="Max Participants" />
+  <input formControlName="category" placeholder="Category" />
+  <button type="submit">{{ eventData ? 'Update' : 'Create' }}</button>
+</form>

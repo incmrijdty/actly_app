@@ -1,0 +1,28 @@
+<div class="organizer-profile">
+  <h2>Welcome, {{ user?.username }}</h2>
+  <p>Email: {{ user?.email }}</p>
+  <p>Role: {{ user?.role }}</p>
+
+  <h3>Your Created Events</h3>
+  <button (click)="createEvent()">Create New Event</button>
+
+  <app-event-form
+    *ngIf="showForm"
+    [eventData]="selectedEvent" 
+    (saved)="onEventSaved()">
+  </app-event-form>
+
+  <div *ngIf="createdEvents.length > 0; else noEvents">
+    <div *ngFor="let event of createdEvents">
+      <h4>{{ event.title }}</h4>
+      <p>{{ event.description }}</p>
+      <button (click)="editEvent(event)">Edit</button>
+      <button (click)="deleteEvent(event.id)">Delete</button>
+    </div>
+  </div>
+
+  <ng-template #noEvents>
+    <p>You haven't created any events yet.</p>
+  </ng-template>
+</div>
+

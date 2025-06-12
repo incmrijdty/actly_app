@@ -3,10 +3,12 @@ import { HomePage } from './home-page/home-page';
 import { RegisterComponent } from './register-component/register-component';
 import { LoginComponent } from './login-component/login-component';
 import { UserProfileComponent } from './user-profile/user-profile';
+import { OrganizerProfileComponent } from './organizer-profile/organizer-profile';
 
 export const routes: Routes = [
     { path: '', component: HomePage },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
-    { path: 'volunteer-profile', component: UserProfileComponent }
+    { path: 'volunteer-profile', component: UserProfileComponent },
+    { path: 'organizer-profile', component: OrganizerProfileComponent }
 ];

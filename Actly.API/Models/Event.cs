@@ -10,6 +10,10 @@ namespace Actly.API.Models
         [Required]
         public required string Title { get; set; }
 
+        public int? OrganizerId { get; set; }
+
+        public User? Organizer { get; set; } = null!;
+
         [Required]
         public required string Description { get; set; }
 

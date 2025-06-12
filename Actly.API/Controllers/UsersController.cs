@@ -64,7 +64,9 @@ public class UsersController : ControllerBase
                 Title = p.Event.Title,
                 Date = p.Event.Date,
                 Description = p.Event.Description,
-                Attended = p.Attended
+                Attended = p.Attended,
+                Location = p.Event.Location,
+                Category = p.Event.Category
             })
             .ToListAsync();
 

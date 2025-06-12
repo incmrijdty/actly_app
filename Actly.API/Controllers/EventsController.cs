@@ -3,6 +3,8 @@ using Actly.API.Models;
 using Actly.API;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
+using Actly.API.DTO;
+using System.Security.Claims;
 
 [ApiController]
 [Route("api/[controller]")]
@@ -36,9 +38,35 @@ public class EventsController : ControllerBase
     }
 
     [Authorize(Roles = "Organizer")]
+    [HttpGet("organizer/{organizerId}")]
+    public async Task<IActionResult> GetByOrganizer(int userId) {
+        var events = await _context.Events.Where(e => e.OrganizerId == userId).ToListAsync();
+        return Ok(events);
+    }
+
+
+    [Authorize(Roles = "Organizer")]
     [HttpPost]
-    public async Task<ActionResult<Event>> CreateEvent(Event ev)
+
+    public async Task<ActionResult<Event>> CreateEvent([FromBody] CreateEventDto dto)
     {
+
+        var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
+        if (userIdClaim == null)
+            return Unauthorized();
+
+        var ev = new Event
+        {
+            Title = dto.Title,
+            Description = dto.Description ?? "",  // Optional fallback
+            Date = dto.Date.ToUniversalTime(),
+            OrganizerId = int.Parse(userIdClaim.Value),
+            Location = dto.Location,
+            MaxParticipants = dto.MaxParticipants,
+            Category = dto.Category,
+            Participations = new List<Participation>()
+            
+        };
 
         _context.Events.Add(ev);
         await _context.SaveChangesAsync();
@@ -48,6 +76,7 @@ public class EventsController : ControllerBase
 
     [Authorize(Roles = "Organizer")]
     [HttpPut("{id}")]
+
     public async Task<IActionResult> UpdateEvent(int id, Event updated)
     {
         if (id != updated.Id)
