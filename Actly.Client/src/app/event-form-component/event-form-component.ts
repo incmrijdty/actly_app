@@ -37,6 +37,7 @@ export class EventFormComponent {
     const formValue = this.eventForm.value;
 
     const eventPayload = {
+      id: this.eventData?.id,
       title: this.eventForm.value.title,
       description: this.eventForm.value.description,
       location: this.eventForm.value.location,

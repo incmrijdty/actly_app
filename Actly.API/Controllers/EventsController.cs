@@ -77,23 +77,25 @@ public class EventsController : ControllerBase
     [Authorize(Roles = "Organizer")]
     [HttpPut("{id}")]
 
-    public async Task<IActionResult> UpdateEvent(int id, Event updated)
+    public async Task<IActionResult> UpdateEvent(int id, [FromBody] CreateEventDto dto)
     {
-        if (id != updated.Id)
-            return BadRequest();
+        var existing = await _context.Events.FirstOrDefaultAsync(e => e.Id == id);
 
-        _context.Entry(updated).State = EntityState.Modified;
+        if (existing == null)
+            return NotFound();
 
-        try
-        {
-            await _context.SaveChangesAsync();
-        }
-        catch (DbUpdateConcurrencyException)
-        {
-            if (!_context.Events.Any(e => e.Id == id))
-                return NotFound();
-            throw;
-        }
+        var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
+        if (userIdClaim == null || existing.OrganizerId != int.Parse(userIdClaim.Value))
+            return Forbid();
+
+        existing.Title = dto.Title;
+        existing.Description = dto.Description;
+        existing.Location = dto.Location;
+        existing.Date = dto.Date.ToUniversalTime();
+        existing.MaxParticipants = dto.MaxParticipants;
+        existing.Category = dto.Category;
+        
+        await _context.SaveChangesAsync();
 
         return NoContent();
     }
