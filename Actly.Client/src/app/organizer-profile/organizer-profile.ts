@@ -10,7 +10,7 @@ interface JwtPayload {
   'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier': string;
   'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress': string;
   'http://schemas.microsoft.com/ws/2008/06/identity/claims/role': string;
-  username: string;
+  'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name': string;
 }
 
 @Component({
@@ -32,7 +32,7 @@ export class OrganizerProfileComponent implements OnInit {
     const payload = jwtDecode<JwtPayload>(token);
     this.user = {
       id: Number(payload['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier']),
-      username: payload.username,
+      username: payload['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'],
       email: payload['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress'],
       role: payload['http://schemas.microsoft.com/ws/2008/06/identity/claims/role']
     };
@@ -44,8 +44,8 @@ export class OrganizerProfileComponent implements OnInit {
     if (this.user) {
       this.eventService.getEventsByOrganizerId(this.user.id).subscribe(events => {
         this.createdEvents = events;
+        this.cdr.detectChanges();
       });
-      //detectChanges()
     }
   }
 

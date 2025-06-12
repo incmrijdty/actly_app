@@ -10,7 +10,7 @@ interface JwtPayload {
   'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier': string;
   'http://schemas.microsoft.com/ws/2008/06/identity/claims/role': string;
   'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress': string;
-  username: string;
+  'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name': string;
 }
 
 @Component({
@@ -34,7 +34,7 @@ export class UserProfileComponent implements OnInit {
     const payload = jwtDecode<JwtPayload>(token);
     this.user = {
       id: Number(payload['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier']),
-      username: payload.username,
+      username: payload['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'],
       email: payload['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress'],
       role: payload['http://schemas.microsoft.com/ws/2008/06/identity/claims/role']
     };

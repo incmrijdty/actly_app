@@ -39,8 +39,8 @@ public class EventsController : ControllerBase
 
     [Authorize(Roles = "Organizer")]
     [HttpGet("organizer/{organizerId}")]
-    public async Task<IActionResult> GetByOrganizer(int userId) {
-        var events = await _context.Events.Where(e => e.OrganizerId == userId).ToListAsync();
+    public async Task<IActionResult> GetByOrganizer(int organizerId) {
+        var events = await _context.Events.Where(e => e.OrganizerId == organizerId).ToListAsync();
         return Ok(events);
     }
 
@@ -58,7 +58,7 @@ public class EventsController : ControllerBase
         var ev = new Event
         {
             Title = dto.Title,
-            Description = dto.Description ?? "",  // Optional fallback
+            Description = dto.Description,
             Date = dto.Date.ToUniversalTime(),
             OrganizerId = int.Parse(userIdClaim.Value),
             Location = dto.Location,

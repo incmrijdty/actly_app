@@ -40,14 +40,17 @@ export class EventFormComponent {
       title: this.eventForm.value.title,
       description: this.eventForm.value.description,
       location: this.eventForm.value.location,
-      date: this.eventForm.value.dateTime,
+      date: this.eventForm.value.date,
       maxParticipants: this.eventForm.value.maxParticipants,
       category: this.eventForm.value.category
     };
     console.log('Payload:', eventPayload);
 
     if (this.eventData) {
-      this.eventService.updateEvent(this.eventData.id, formValue).subscribe(() => this.saved.emit());
+      this.eventService.updateEvent(this.eventData.id, formValue).subscribe(() => {
+        this.saved.emit();
+        this.cdr.detectChanges(); // optional, usually not needed
+      });
     } else {
       this.eventService.createEvent(formValue).subscribe(() => {
         this.saved.emit();
