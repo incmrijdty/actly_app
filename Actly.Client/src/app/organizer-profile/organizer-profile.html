@@ -13,9 +13,8 @@
   </app-event-form>
 
   <div *ngIf="createdEvents.length > 0; else noEvents">
-    <div *ngFor="let event of createdEvents">
-      <h4>{{ event.title }}</h4>
-      <p>{{ event.description }}</p>
+    <div *ngFor="let event of createdEvents"> 
+      <app-event-card  [event]="event"></app-event-card>
       <button (click)="editEvent(event)">Edit</button>
       <button (click)="deleteEvent(event.id)">Delete</button>
     </div>

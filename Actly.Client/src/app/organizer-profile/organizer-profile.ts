@@ -5,6 +5,7 @@ import { jwtDecode } from 'jwt-decode';
 import { Event } from '../models/event';
 import { CommonModule } from '@angular/common';
 import { EventFormComponent } from '../event-form-component/event-form-component';
+import { EventCardComponent } from '../event-card-component/event-card-component';
 
 interface JwtPayload {
   'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier': string;
@@ -15,7 +16,7 @@ interface JwtPayload {
 
 @Component({
   selector: 'app-organizer-profile',
-  imports: [EventFormComponent, CommonModule],
+  imports: [EventFormComponent, CommonModule, EventCardComponent],
   templateUrl: './organizer-profile.html',
   styleUrls: ['./organizer-profile.css']
 })

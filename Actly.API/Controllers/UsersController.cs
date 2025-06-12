@@ -66,7 +66,8 @@ public class UsersController : ControllerBase
                 Description = p.Event.Description,
                 Attended = p.Attended,
                 Location = p.Event.Location,
-                Category = p.Event.Category
+                Category = p.Event.Category,
+                MaxParticipants = p.Event.MaxParticipants
             })
             .ToListAsync();
 
