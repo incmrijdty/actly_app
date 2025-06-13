@@ -3,6 +3,9 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { CommonModule } from '@angular/common';
 import { EventService } from '../services/event';
 import { Event } from '../models/event';
+import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-event-form',
@@ -14,15 +17,29 @@ export class EventFormComponent {
   @Input() eventData: Event | null = null;
   @Output() saved = new EventEmitter<void>();
   eventForm: FormGroup;
+  suggestions: any[] = [];
 
-  constructor(private fb: FormBuilder, private eventService: EventService, private cdr: ChangeDetectorRef) {
+  constructor(private fb: FormBuilder, private eventService: EventService, private cdr: ChangeDetectorRef, private http: HttpClient) {
     this.eventForm = this.fb.group({
       title: ['', Validators.required],
       description: ['', Validators.required],
-      location: ['', Validators.required],
+      location: this.fb.control('', {
+        validators: Validators.required,
+        updateOn: 'change' // instead of 'blur'
+      }),
       date: ['', Validators.required],
       maxParticipants: ['', [Validators.required, Validators.min(1)]],
       category: ['', Validators.required]
+    });
+  }
+
+  ngOnInit() {
+    this.eventForm.get('location')?.valueChanges.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      switchMap(value => this.searchLocation(value))
+    ).subscribe(results => {
+      this.suggestions = results;
     });
   }
 
@@ -30,6 +47,28 @@ export class EventFormComponent {
     if (this.eventData) {
       this.eventForm.patchValue(this.eventData);
     }
+  }
+
+  searchLocation(term: string) {
+    if (!term || term.length < 3) {
+      return of([]);
+    }
+
+    
+    const url = `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${encodeURIComponent(term)}&key=AIzaSyDnIPEnZ-IFH12AqKF3_lBdzmGjWIkgDoc`;
+    return this.http.get<any[]>(url);
+  }
+
+  selectSuggestion(suggestion: any) {
+    this.eventForm.get('location')?.setValue(suggestion.display_name);
+    this.suggestions = [];
+  }
+
+  onTyping() {
+    const value = this.eventForm.get('location')?.value;
+    this.searchLocation(value).subscribe(results => {
+      this.suggestions = results;
+    });
   }
 
   submit() {
