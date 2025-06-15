@@ -25,11 +25,11 @@ export class HomePage implements OnInit {
   userRole: string | null = null;
   private authSub?: Subscription;
 
-  categories: string[] = []; // will fill after fetch
+  categories: string[] = []; 
   selectedCategory = '';
   minParticipants?: number;
   maxParticipants?: number;
-  selectedDate?: string; // string format from input date
+  selectedDate?: string; 
   locationFilter = '';
 
   constructor(private http: HttpClient, private cd: ChangeDetectorRef, private authService: AuthService, private router: Router) {}
@@ -57,7 +57,7 @@ export class HomePage implements OnInit {
       .subscribe({
         next: (data) => {
           this.events = data;
-          this.categories = [...new Set(data.map(e => e.category))]; // extract categories for filter select
+          this.categories = [...new Set(data.map(e => e.category))]; 
           this.applyFilters();
           this.loading = false;
           this.cd.detectChanges();
@@ -84,7 +84,6 @@ export class HomePage implements OnInit {
       if (this.selectedDate) {
         const eventDate = new Date(event.date);
         const selectedDateObj = new Date(this.selectedDate);
-        // Filter events on or after selected date (you can adjust logic)
         if (eventDate < selectedDateObj) {
           return false;
         }

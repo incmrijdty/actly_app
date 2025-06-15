@@ -20,6 +20,5 @@ namespace Actly.API.Models
         public required string PasswordHash { get; set; }
 
         public required List<Participation> Participations { get; set; }
-        //public List<UserBadge> UserBadges { get; set; } = new();
     }
 }
