@@ -7,21 +7,30 @@ import { EventCardComponent } from '../event-card-component/event-card-component
 import { AuthService } from '../services/auth';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-home-page',
   standalone: true,
-  imports: [CommonModule, RouterModule, EventCardComponent],
+  imports: [CommonModule, RouterModule, EventCardComponent, FormsModule],
   templateUrl: './home-page.html',
   styleUrl: './home-page.css'
 })
 
 export class HomePage implements OnInit {
   events: Event[] = [];
+  filteredEvents: Event[] = [];
   loading = true;
   isLoggedIn = false;
   userRole: string | null = null;
   private authSub?: Subscription;
+
+  categories: string[] = []; // will fill after fetch
+  selectedCategory = '';
+  minParticipants?: number;
+  maxParticipants?: number;
+  selectedDate?: string; // string format from input date
+  locationFilter = '';
 
   constructor(private http: HttpClient, private cd: ChangeDetectorRef, private authService: AuthService, private router: Router) {}
 
@@ -34,7 +43,7 @@ export class HomePage implements OnInit {
       this.cd.detectChanges();
     });
 
-    // Initialize values on load
+
     this.isLoggedIn = this.authService.isLoggedIn.getValue();
     this.userRole = this.authService.getUserRole();
   }
@@ -48,6 +57,8 @@ export class HomePage implements OnInit {
       .subscribe({
         next: (data) => {
           this.events = data;
+          this.categories = [...new Set(data.map(e => e.category))]; // extract categories for filter select
+          this.applyFilters();
           this.loading = false;
           this.cd.detectChanges();
         },
@@ -57,6 +68,35 @@ export class HomePage implements OnInit {
           this.cd.detectChanges();
         }
       });
+  }
+
+  applyFilters(): void {
+    this.filteredEvents = this.events.filter(event => {
+      if (this.selectedCategory && event.category !== this.selectedCategory) {
+        return false;
+      }
+      if (this.minParticipants != null && event.maxParticipants < this.minParticipants) {
+        return false;
+      }
+      if (this.maxParticipants != null && event.maxParticipants > this.maxParticipants) {
+        return false;
+      }
+      if (this.selectedDate) {
+        const eventDate = new Date(event.date);
+        const selectedDateObj = new Date(this.selectedDate);
+        // Filter events on or after selected date (you can adjust logic)
+        if (eventDate < selectedDateObj) {
+          return false;
+        }
+      }
+      if (this.locationFilter) {
+        const loc = this.locationFilter.toLowerCase();
+        if (!event.location.toLowerCase().includes(loc)) {
+          return false;
+        }
+      }
+      return true;
+    });
   }
 
 

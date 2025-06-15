@@ -11,13 +11,27 @@
     <router-outlet></router-outlet>
   </header>
 
-  <div *ngIf="loading">Loading events...</div>
+  <div class="filters">
+    <select [(ngModel)]="selectedCategory" (change)="applyFilters()">
+      <option value="">All Categories</option>
+      <option *ngFor="let cat of categories" [value]="cat">{{ cat }}</option>
+    </select>
 
-  <div class="event-list" *ngIf="!loading && events.length">
-    <app-event-card *ngFor="let event of events" [event]="event"></app-event-card>
+    <input type="number" placeholder="Min participants" [(ngModel)]="minParticipants" (input)="applyFilters()" />
+    <input type="number" placeholder="Max participants" [(ngModel)]="maxParticipants" (input)="applyFilters()" />
+
+    <input type="date" [(ngModel)]="selectedDate" (change)="applyFilters()" />
+
+    <input type="text" placeholder="Location filter" [(ngModel)]="locationFilter" (input)="applyFilters()" />
   </div>
 
-  <div *ngIf="!loading && !events.length">
+  <div *ngIf="loading">Loading events...</div>
+
+  <div class="event-list" *ngIf="!loading && filteredEvents.length">
+    <app-event-card *ngFor="let event of filteredEvents" [event]="event"></app-event-card>
+  </div>
+
+  <div *ngIf="!loading && !filteredEvents.length">
     <p>No events available right now.</p>
   </div>
 </div>
