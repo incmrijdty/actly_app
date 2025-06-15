@@ -5,6 +5,7 @@ import { jwtDecode } from 'jwt-decode';
 import { CommonModule } from '@angular/common';
 import { EventCardComponent } from '../event-card-component/event-card-component';
 import { ChangeDetectorRef } from '@angular/core';
+import { Router } from '@angular/router';
 
 interface JwtPayload {
   'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier': string;
@@ -25,7 +26,7 @@ export class UserProfileComponent implements OnInit {
   attendedEvents: any[] = [];
   upcomingEvents: any[] = [];
 
-  constructor(private auth: AuthService, private eventService: EventService, private cdRef: ChangeDetectorRef) {}
+  constructor(private auth: AuthService, private eventService: EventService, private cdRef: ChangeDetectorRef, private router: Router) {}
 
   ngOnInit() {
     const token = this.auth.getToken();
@@ -47,5 +48,11 @@ export class UserProfileComponent implements OnInit {
       console.log('Upcoming:', events.filter(e => !e.attended));
       this.cdRef.detectChanges();
     });
+  }
+
+  logout() {
+    this.auth.logout();
+    alert('You have been logged out successfully.');
+    this.router.navigate(['/']);  
   }
 }

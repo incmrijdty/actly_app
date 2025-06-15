@@ -98,10 +98,4 @@ export class HomePage implements OnInit {
     });
   }
 
-
-  logout() {
-    this.authService.logout();
-    alert('You have been logged out successfully.');
-  }
-
 }

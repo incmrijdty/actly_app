@@ -6,6 +6,9 @@ import { Event } from '../models/event';
 import { CommonModule } from '@angular/common';
 import { EventFormComponent } from '../event-form-component/event-form-component';
 import { EventCardComponent } from '../event-card-component/event-card-component';
+import { RouterModule } from '@angular/router';
+import { EventAttendance } from '../event-attendance/event-attendance';
+import { Router } from '@angular/router';
 
 interface JwtPayload {
   'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier': string;
@@ -16,15 +19,17 @@ interface JwtPayload {
 
 @Component({
   selector: 'app-organizer-profile',
-  imports: [EventFormComponent, CommonModule, EventCardComponent],
+  imports: [EventFormComponent, CommonModule, EventCardComponent, RouterModule, EventAttendance],
   templateUrl: './organizer-profile.html',
   styleUrls: ['./organizer-profile.css']
 })
 export class OrganizerProfileComponent implements OnInit {
   user: { id: number; username: string; email: string; role: string } | null = null;
   createdEvents: Event[] = [];
+  shownEventId: number | null = null;
+  showParticipants = false;
 
-  constructor(private auth: AuthService, private eventService: EventService, private cdr: ChangeDetectorRef) {}
+  constructor(private auth: AuthService, private eventService: EventService, private cdr: ChangeDetectorRef, private router: Router) {}
 
   ngOnInit(): void {
     const token = this.auth.getToken();
@@ -74,4 +79,17 @@ export class OrganizerProfileComponent implements OnInit {
     this.showForm = false;
     this.fetchCreatedEvents();
   }
+
+  toggleParticipants(eventId: number) {
+    this.shownEventId = this.shownEventId === eventId ? null : eventId;
+    this.showParticipants = !this.showParticipants;
+  }
+
+  
+  logout() {
+    this.auth.logout();
+    alert('You have been logged out successfully.');
+    this.router.navigate(['/']);
+  }
+
 }

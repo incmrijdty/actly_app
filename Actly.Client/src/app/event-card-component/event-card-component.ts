@@ -8,6 +8,7 @@ import { jwtDecode } from 'jwt-decode';
 interface JwtPayload {
   'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier': string;
   'http://schemas.microsoft.com/ws/2008/06/identity/claims/role': string;
+  'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name': string;
 }
 
 @Component({
@@ -23,6 +24,8 @@ export class EventCardComponent implements OnInit {
   joined = false;
   canJoin = false;
   isLoggedIn = false;
+  username = '';
+  partId!: number;
 
   constructor(
     private participationService: ParticipationService,
@@ -40,6 +43,7 @@ export class EventCardComponent implements OnInit {
         console.log('[EventCardComponent] decoded token:', payload);
         this.userId = Number(payload['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier']);
         this.canJoin = payload['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'] === 'Volunteer';
+        this.username = payload['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'];
         console.log(this.canJoin);
 
         if (this.canJoin) {
@@ -73,7 +77,9 @@ export class EventCardComponent implements OnInit {
     if (!this.userId || !this.canJoin) return;
 
     const participation = {
+      id: this.partId,
       userId: this.userId,
+      username: this.username,
       eventId: this.event.id,
       attended: false,
       feedback: null

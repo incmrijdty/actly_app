@@ -16,13 +16,40 @@ public class UsersController : ControllerBase
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<User>> GetUser(int id)
+    public async Task<ActionResult<UserDto>> GetUser(int id)
     {
-        var user = await _context.Users.FindAsync(id);
+        var user = await _context.Users
+        .Include(u => u.Participations)
+            .ThenInclude(p => p.Event)
+        .FirstOrDefaultAsync(u => u.Id == id);
+
         if (user == null)
             return NotFound();
 
-        return user;
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
+        var dto = new UserDto
+        {
+            Id = user.Id,
+            Username = user.Username,
+            Email = user.Email,
+            Role = user.Role,
+            Participations = user.Participations.Select(p => new ParticipationDto
+            {
+                Id = p.Id,
+                UserId = p.UserId,
+                EventId = p.EventId,
+                Attended = p.Attended,
+                Event = new EventBriefDto
+                {
+                    Id = p.Event.Id,
+                    Title = p.Event.Title,
+                    Date = p.Event.Date
+                }
+            }).ToList()
+        };
+#pragma warning restore CS8602 // Dereference of a possibly null reference.
+
+        return dto;
     }
 
     [HttpPost]

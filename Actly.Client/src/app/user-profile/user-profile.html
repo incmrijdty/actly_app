@@ -3,6 +3,8 @@
   <p>Your Email: {{ user?.email }}</p>
   <p>Role: {{ user?.role }}</p>
 
+  <button (click)="logout()">Logout</button>
+
   <h3>Upcoming Events</h3>
     <div *ngIf="upcomingEvents.length > 0; else noUpcoming">
         <app-event-card *ngFor="let event of upcomingEvents" [event]="event"></app-event-card>

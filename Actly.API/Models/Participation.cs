@@ -17,7 +17,6 @@ namespace Actly.API.Models
 
         public required Event? Event { get; set; }
         public bool Attended { get; set; }
-        public string? Feedback { get; set; }
 
         [Required]
         public DateTime JoinedAt { get; set; } = DateTime.UtcNow;

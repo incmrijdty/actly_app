@@ -6,13 +6,13 @@
   <p><strong>Max Participants:</strong> {{ event.maxParticipants }}</p>
   <p>{{ event.description }}</p>
 
-  <button *ngIf="canJoin && !joined" (click)="joinEvent()" [disabled]="!isLoggedIn">Join</button>
-  <button *ngIf="canJoin && joined" (click)="leaveEvent()">Leave</button>
+  <button *ngIf="canJoin && !joined && isLoggedIn" (click)="joinEvent()" [disabled]="!isLoggedIn">Join</button>
+  <button *ngIf="canJoin && joined && isLoggedIn" (click)="leaveEvent()" [disabled]="!isLoggedIn">Leave</button>
 
   <div *ngIf="!isLoggedIn" class="alert alert-warning">
     Please log in to join events.
   </div>
   
-  <p *ngIf="joined" style="color: green;">Joined successfully!</p>
-  <p *ngIf="error" style="color: red;">{{ error }}</p>
+  <p *ngIf="joined && isLoggedIn" style="color: green;">Joined successfully!</p>
+  <p *ngIf="error && isLoggedIn" style="color: red;">{{ error }}</p>
 </div>

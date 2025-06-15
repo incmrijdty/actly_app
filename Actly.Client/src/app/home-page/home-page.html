@@ -6,7 +6,6 @@
       <button routerLink="/register" *ngIf="!isLoggedIn">Register</button>
       <button routerLink="/volunteer-profile" *ngIf="isLoggedIn && userRole === 'Volunteer'">Your Profile</button>
       <button routerLink="/organizer-profile" *ngIf="isLoggedIn && userRole === 'Organizer'">Organizer Profile</button>
-      <button *ngIf="isLoggedIn" (click)="logout()">Logout</button>
     </div>
     <router-outlet></router-outlet>
   </header>

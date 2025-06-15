@@ -63,13 +63,6 @@ export class EventFormComponent {
     this.suggestions = [];
   }
 
-  /* onTyping() {
-    const value = this.eventForm.get('location')?.value;
-    this.searchLocation(value).subscribe(results => {
-      this.suggestions = results;
-    });
-  } */
-
   submit() {
     console.log(this.eventForm.value);
     const formValue = this.eventForm.value;

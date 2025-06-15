@@ -25,6 +25,41 @@ public class ParticipationController : ControllerBase
             .ToListAsync();
     }
 
+    [HttpGet("{id}")]
+    public async Task<ActionResult<ParticipationDto>> GetParticipation(int id)
+    {
+        var p = await _context.Participations
+            .Include(p => p.User)
+            .Include(p => p.Event)
+            .FirstOrDefaultAsync(p => p.Id == id);
+
+        if (p == null)
+            return NotFound();
+
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
+        return new ParticipationDto
+        {
+            Id = p.Id,
+            UserId = p.UserId,
+            EventId = p.EventId,
+            Attended = p.Attended,
+            User = new UserDto
+            {
+                Id = p.User.Id,
+                Username = p.User.Username,
+                Email = p.User.Email,
+                Role = p.User.Role
+            },
+            Event = new EventBriefDto
+            {
+                Id = p.Event.Id,
+                Title = p.Event.Title,
+                Date = p.Event.Date
+            }
+        };
+#pragma warning restore CS8602 // Dereference of a possibly null reference.
+    }
+
     [Authorize(Roles = "Volunteer")]
     [HttpPost]
     public async Task<ActionResult<Participation>> JoinEvent([FromBody] ParticipationDto dto)
@@ -46,7 +81,6 @@ public class ParticipationController : ControllerBase
             UserId = dto.UserId,
             EventId = dto.EventId,
             Attended = dto.Attended,
-            Feedback = dto.Feedback,
             JoinedAt = DateTime.UtcNow,
             User = user,
             Event = ev
@@ -71,7 +105,7 @@ public class ParticipationController : ControllerBase
 
         return NoContent();
     }
-    
+
     [HttpGet("user/{userId}/event/{eventId}")]
     public async Task<IActionResult> CheckParticipation(int userId, int eventId)
     {
@@ -80,5 +114,18 @@ public class ParticipationController : ControllerBase
 
         return Ok(exists);
     }
+
+    [HttpPut("{id}/attendance")]
+    public async Task<IActionResult> UpdateAttendance(int id, [FromBody] bool attended)
+    {
+        var participation = await _context.Participations.FindAsync(id);
+        if (participation == null) return NotFound();
+
+        participation.Attended = attended;
+        await _context.SaveChangesAsync();
+
+        return NoContent();
+    }
+
 
 }
