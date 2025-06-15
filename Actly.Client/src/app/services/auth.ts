@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, tap } from 'rxjs';
+import { jwtDecode } from 'jwt-decode';
 
 
 @Injectable({
@@ -24,7 +25,19 @@ export class AuthService {
   }
 
   register(data: { username: string; email: string; role: string; password: string }) {
-    return this.http.post(`${this.apiUrl}/register`, data);
+    return this.http.post(`${this.apiUrl}/register`, data, { responseType: 'text' });
+  }
+
+  getUserRole(): string | null {
+    const token = this.getToken();
+    if (!token) return null;
+
+    try {
+      const payload = jwtDecode<any>(token);
+      return payload['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
+    } catch {
+      return null;
+    }
   }
 
   logout() {

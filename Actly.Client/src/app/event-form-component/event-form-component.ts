@@ -49,13 +49,12 @@ export class EventFormComponent {
     }
   }
 
-  searchLocation(term: string) {
-    if (!term || term.length < 3) {
+  searchLocation(query: string) {
+    if (!query || query.length < 3) {
       return of([]);
     }
 
-    
-    const url = `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${encodeURIComponent(term)}&key=AIzaSyDnIPEnZ-IFH12AqKF3_lBdzmGjWIkgDoc`;
+    const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}`;
     return this.http.get<any[]>(url);
   }
 
@@ -64,12 +63,12 @@ export class EventFormComponent {
     this.suggestions = [];
   }
 
-  onTyping() {
+  /* onTyping() {
     const value = this.eventForm.get('location')?.value;
     this.searchLocation(value).subscribe(results => {
       this.suggestions = results;
     });
-  }
+  } */
 
   submit() {
     console.log(this.eventForm.value);

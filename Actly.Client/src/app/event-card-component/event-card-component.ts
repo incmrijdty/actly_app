@@ -22,6 +22,7 @@ export class EventCardComponent implements OnInit {
   error = '';
   joined = false;
   canJoin = false;
+  isLoggedIn = false;
 
   constructor(
     private participationService: ParticipationService,
@@ -50,6 +51,9 @@ export class EventCardComponent implements OnInit {
             error: () => this.error = 'Failed to check participation'
           });
         }
+        this.auth.isLoggedIn.subscribe(status => {
+          this.isLoggedIn = status;
+        });
 
 
       } catch (err) {
@@ -61,6 +65,11 @@ export class EventCardComponent implements OnInit {
   }
 
   joinEvent() {
+    if (!this.isLoggedIn) {
+      alert('You must be logged in to join an event.');
+      return;
+    }
+
     if (!this.userId || !this.canJoin) return;
 
     const participation = {

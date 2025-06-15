@@ -25,16 +25,20 @@ export class RegisterComponent {
     console.log('Submitting register form...');
     this.auth.register({ username: this.username, email: this.email, role: this.role, password: this.password })
       .subscribe({
-        next: () => {
+        next: (responseText) => {
+          console.log(responseText);
           setTimeout(() => {
             this.router.navigate(['/login']);
           }, 2000); 
         },
         error: err => {
+          console.error('Registration error', err);
           if (typeof err.error === 'string') {
             this.error = err.error;
           } else if (err.error?.message) {
             this.error = err.error.message;
+          } else if (err.error) {
+            this.error = JSON.stringify(err.error);
           } else {
             this.error = 'Registration failed';
           }
