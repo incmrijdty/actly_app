@@ -25,7 +25,7 @@ export class EventFormComponent {
       description: ['', Validators.required],
       location: this.fb.control('', {
         validators: Validators.required,
-        updateOn: 'change' // instead of 'blur'
+        updateOn: 'change' 
       }),
       date: ['', Validators.required],
       maxParticipants: ['', [Validators.required, Validators.min(1)]],
